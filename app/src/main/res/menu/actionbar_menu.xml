@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- action items -->
+    <!-- showAsAction默认为never -->
+    <item
+        android:id="@+id/alreadyorder"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:showAsAction="always"
+        android:title="已点菜品"/>
+    <item
+        android:id="@+id/checkorder"
+        android:icon="@android:drawable/ic_menu_add"
+        android:showAsAction="ifRoom"
+        android:title="查看订单">
+    </item>
+    <item
+        android:id="@+id/help"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:showAsAction="ifRoom"
+        android:title="呼叫服务"/>
+    <item
+        android:id="@+id/share"
+        android:icon="@android:drawable/ic_menu_share"
+        android:showAsAction="never"
+        android:title="分享"/>
+
+
+    <!-- action views -->
+
+    <!--<item-->
+        <!--android:id="@+id/clock"-->
+        <!--android:actionLayout="@layout/actionbar_layout_menu"-->
+        <!--android:showAsAction="always"-->
+        <!--android:title="时钟"/>-->
+
+
+</menu>

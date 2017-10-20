@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <ImageView
+        android:id="@+id/image_photo"
+        android:layout_width="70dp"
+        android:layout_height="79dp"
+        android:layout_weight="0.04"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/image_photo"
+        android:width="70dp"
+        android:textSize="20dp"
+        android:layout_weight="0.77" />
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="30dp"
+        android:layout_height="48dp"
+        android:layout_below="@id/name"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/image_photo"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="75dp"
+        android:layout_height="78dp"
+        android:text="吃吃吃"
+        android:layout_weight="0.02" />
+</LinearLayout>
