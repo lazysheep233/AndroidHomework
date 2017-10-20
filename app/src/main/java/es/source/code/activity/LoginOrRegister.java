@@ -101,6 +101,7 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
         Button buttonjoin = (Button)findViewById(R.id.button);
         if (name!=null){
             buttonjoin.setVisibility(View.GONE);
+            buttonlogin.setVisibility(View.GONE);
             mEmailSignInButton.setText(name);
             Toast.makeText(LoginOrRegister.this, "欢迎回来："+name, Toast.LENGTH_SHORT).show();
             mEmailView.setText(name);
