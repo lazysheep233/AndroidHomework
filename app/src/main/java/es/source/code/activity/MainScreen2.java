@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,6 +39,14 @@ public class MainScreen2 extends Activity implements AdapterView.OnItemClickList
         String[] from = {"image", "text"};
         int[] to = {R.id.image, R.id.text};
 
+        SharedPreferences preferences=getSharedPreferences("userrecord", Context.MODE_PRIVATE);
+        Boolean state =preferences.getBoolean("loginState",false);
+        if (state){
+            getData();
+            Toast.makeText(MainScreen2.this, "通过state判断登录", Toast.LENGTH_SHORT).show();
+        }else {
+            getDataWithoutLogin();
+        }
         Intent intent1 = getIntent();
         Bundle bundle = intent1.getExtras();
 
@@ -46,7 +56,7 @@ public class MainScreen2 extends Activity implements AdapterView.OnItemClickList
             switch (from1) {
                 case "fromentry":
                     //来自入口Activity
-                    getDataWithoutLogin();
+                    //getDataWithoutLogin();
 
                     Toast.makeText(MainScreen2.this, "来自入口", Toast.LENGTH_SHORT).show();
                     break;
@@ -54,8 +64,8 @@ public class MainScreen2 extends Activity implements AdapterView.OnItemClickList
                 case "LoginSuccess":
                     //来自LoginOrRegister且登录成功
                     user =(User)bundle.getSerializable("usr");
-                    Toast.makeText(MainScreen2.this, from1+user.getName(), Toast.LENGTH_SHORT).show();
-                    getData();
+                    //Toast.makeText(MainScreen2.this, from1+user.getName(), Toast.LENGTH_SHORT).show();
+                    //getData();
                     break;
 
                 case "Return":
@@ -68,7 +78,7 @@ public class MainScreen2 extends Activity implements AdapterView.OnItemClickList
                 case "RegisterSuccess":
                     user =(User)bundle.getSerializable("usr");
                     Toast.makeText(MainScreen2.this, "欢迎："+user.getName()+"成为新用户", Toast.LENGTH_SHORT).show();
-                    getData();
+                    //getData();
                     break;
 
             }
@@ -152,7 +162,7 @@ public class MainScreen2 extends Activity implements AdapterView.OnItemClickList
                 case 3:
                     Toast.makeText(MainScreen2.this, "帮助", Toast.LENGTH_SHORT).show();
                     Intent intent5 = new Intent();
-                    intent5.setClass(MainScreen2.this, buy.class);
+                    intent5.setClass(MainScreen2.this, SCOSHelper.class);
                     startActivity(intent5);
                     break;
             }

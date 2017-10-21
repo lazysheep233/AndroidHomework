@@ -76,7 +76,7 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
         setContentView(R.layout.activity_login_or_register);
         // Set up the login form.
         SharedPreferences preferences=getSharedPreferences("userrecord", Context.MODE_PRIVATE);
-        String name=preferences.getString("userName", "defaultname");
+        final String name=preferences.getString("userName", "defaultname");
 
 
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
@@ -105,6 +105,9 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
             mEmailSignInButton.setText(name);
             Toast.makeText(LoginOrRegister.this, "欢迎回来："+name, Toast.LENGTH_SHORT).show();
             mEmailView.setText(name);
+        }else {
+            mEmailSignInButton.setVisibility(View.GONE);
+            Toast.makeText(LoginOrRegister.this, "新用户你好", Toast.LENGTH_SHORT).show();
         }
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -125,6 +128,12 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
                 Intent intentnew = new Intent();
                 intentnew.setClass(LoginOrRegister.this, MainScreen2.class);
                 intentnew.putExtra("from", "Return");
+                if (name==null){
+                    SharedPreferences sharedPreferences = getSharedPreferences("userrecord", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                    editor.putBoolean("loginState",false);
+                    editor.commit();//提交修改
+                }
                 startActivity(intentnew);
 
 
@@ -376,6 +385,15 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
                 loginUser.setPassword(mPasswordView.getText().toString());
                 loginUser.setOldUser(false);
 
+                SharedPreferences sharedPreferences = getSharedPreferences("userrecord", Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+
+                editor.putString("userName", mEmailView.getText().toString());
+                editor.putBoolean("loginState",true);
+
+                editor.commit();//提交修改
+                loginUser.setLoginState(true);
                 Intent intentnew = new Intent(LoginOrRegister.this,MainScreen2.class);
                 Bundle bundlenew = new Bundle();
                 bundlenew.putSerializable("usr",loginUser);
@@ -392,18 +410,19 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
         //final ProgressBar loginProgress = (ProgressBar)findViewById(R.id.progressBar);
 
         //loginProgress.setVisibility(View.VISIBLE);
-        User newUser = new User();
+                User newUser = new User();
                 newUser.setName(mEmailView.getText().toString());
                 newUser.setPassword(mPasswordView.getText().toString());
                 newUser.setOldUser(true);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("userrecord", Context.MODE_PRIVATE);
+        //登录成功后添加用户名到preference
+                SharedPreferences sharedPreferences = getSharedPreferences("userrecord", Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
+                SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
 
-        editor.putString("userName", mEmailView.getText().toString());
-
-        editor.commit();//提交修改
+                editor.putString("userName", mEmailView.getText().toString());
+                editor.putBoolean("loginState",true);
+                editor.commit();//提交修改
 
 
                 newUser.setLoginState(true);

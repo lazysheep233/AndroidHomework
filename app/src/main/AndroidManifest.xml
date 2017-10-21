@@ -51,8 +51,9 @@
             android:label="@string/title_activity_login_or_register" />
         <activity android:name=".buy1" />
         <activity android:name=".buy2" />
-        <activity android:name=".FoodOrderView"></activity>
-        <activity android:name=".FoodDetailed"></activity>
+        <activity android:name=".FoodOrderView" />
+        <activity android:name=".FoodDetailed" />
+        <activity android:name=".SCOSHelper"></activity>
     </application>
 
 </manifest>
