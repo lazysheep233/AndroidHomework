@@ -97,11 +97,11 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
         });
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        Button buttonlogin = (Button)findViewById(R.id.button2);
+        Button buttonreturn = (Button)findViewById(R.id.button2);
         Button buttonjoin = (Button)findViewById(R.id.button);
-        if (name!=null){
+        if (name!=null&&!(name.equals("defaultname"))){
             buttonjoin.setVisibility(View.GONE);
-            buttonlogin.setVisibility(View.GONE);
+            //buttonreturn.setVisibility(View.GONE);
             mEmailSignInButton.setText(name);
             Toast.makeText(LoginOrRegister.this, "欢迎回来："+name, Toast.LENGTH_SHORT).show();
             mEmailView.setText(name);
@@ -122,13 +122,13 @@ public class LoginOrRegister extends AppCompatActivity implements LoaderCallback
         //// TODO: 2017/9/27 返回button监听
 
         final ProgressBar loginProgress = (ProgressBar)findViewById(R.id.progressBar);
-        buttonlogin.setOnClickListener(new View.OnClickListener() {
+        buttonreturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentnew = new Intent();
                 intentnew.setClass(LoginOrRegister.this, MainScreen2.class);
                 intentnew.putExtra("from", "Return");
-                if (name==null){
+                if (name!=null&&name.equals("defaultname")){
                     SharedPreferences sharedPreferences = getSharedPreferences("userrecord", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
                     editor.putBoolean("loginState",false);

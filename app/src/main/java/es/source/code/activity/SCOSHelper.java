@@ -121,12 +121,12 @@ public class SCOSHelper extends AppCompatActivity implements AdapterView.OnItemC
         }
 
         public void run(){
-            Uri uri = Uri.parse("mailto:rukaxj@163.com");
-            String[] email = {"383007265@qq.com"};
+            Uri uri = Uri.parse("mailto:383007265@qq.com");
+            String[] email = {"rukaxj@163.com"};
             Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
             intent.putExtra(Intent.EXTRA_CC, email); // 抄送人
             intent.putExtra(Intent.EXTRA_SUBJECT, "SCOS helper"); // 主题
-            intent.putExtra(Intent.EXTRA_TEXT, "安卓作业写完了吗作业功能自动发送不要回复靴靴"); // 正文
+            intent.putExtra(Intent.EXTRA_TEXT, "作业功能自动发送不要回复靴靴"); // 正文
             mcontext.startActivity(Intent.createChooser(intent, "请选择邮件类应用"));
 
             handler.sendEmptyMessage(1);

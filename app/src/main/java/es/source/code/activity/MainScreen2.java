@@ -40,7 +40,8 @@ public class MainScreen2 extends Activity implements AdapterView.OnItemClickList
         int[] to = {R.id.image, R.id.text};
 
         SharedPreferences preferences=getSharedPreferences("userrecord", Context.MODE_PRIVATE);
-        Boolean state =preferences.getBoolean("loginState",false);
+        Boolean state = false;
+        state = preferences.getBoolean("loginState",false);
         if (state){
             getData();
             Toast.makeText(MainScreen2.this, "通过state判断登录", Toast.LENGTH_SHORT).show();
